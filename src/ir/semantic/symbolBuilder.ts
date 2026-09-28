@@ -172,11 +172,12 @@ export function buildLayerTable(
       name,
       color: resolveColor(obj.color),
       lineWeight: resolveLineWeight(obj.linewt),
+      linetype: ltypeRef,
       // In AutoCAD/LibreDWG, layer OFF is stored via negative color index or off: 1
       isOff: (obj.color?.index !== undefined && obj.color.index < 0) || obj.off === 1,
       isFrozen: (flag0 & 0x01) !== 0,
       isLocked: (flag0 & 0x04) !== 0,
-      isNoPlot: (flag0 & 0x40) !== 0,
+      isNoPlot: name.toLowerCase() === 'defpoints' || (obj as any).plot_flag === 0 || (obj as any).plotting_flag === 0,
       sourceHandle: handleKey(obj.handle),
     };
 
