@@ -54,9 +54,16 @@ export async function convertDwgToJson(inputPath: string): Promise<DwgConversion
       }
 
       try {
-        // Read and parse the massive JSON file
+        // Read and parse the massive JSON file, sanitizing non-standard float tokens (nan, -nan, inf, -inf)
         const jsonContent = await fs.readFile(outputPath, 'utf8');
-        const parsedJson = JSON.parse(jsonContent);
+        const sanitized = jsonContent
+          .replace(/:\s*-?nan\b/gi, ': 0')
+          .replace(/:\s*-?inf\b/gi, ': 0')
+          .replace(/\[\s*-?nan\b/gi, '[0')
+          .replace(/\[\s*-?inf\b/gi, '[0')
+          .replace(/,\s*-?nan\b/gi, ', 0')
+          .replace(/,\s*-?inf\b/gi, ', 0');
+        const parsedJson = JSON.parse(sanitized);
 
         // Clean up temp file
         await fs.rm(tempDir, { recursive: true, force: true });
