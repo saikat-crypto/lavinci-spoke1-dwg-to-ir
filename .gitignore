@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Production build outputs
+dist/
+
+# Evaluation, sample dumps, and caches
+*.log
+*.zip
+*.dwg
+*.dxf
+*.svg
+*.pdf
+sample_output.json
+*_semantic_ir.json
+libredwg/
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment variables
+.env
+.env.local

@@ -1,0 +1,45 @@
+{
+  "name": "@lavinci/v4-dwg-to-ir",
+  "version": "4.0.0",
+  "description": "High-performance CAD DWG/DWT parser and Semantic Intermediate Representation (IR) compiler engine (v4)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./schema": {
+      "import": "./dist/ir/semantic/schema.js",
+      "types": "./dist/ir/semantic/schema.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "Dockerfile"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test:model": "tsx src/ir/semantic/testRunner.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "cad",
+    "dwg",
+    "dwt",
+    "libredwg",
+    "intermediate-representation",
+    "computational-geometry",
+    "autocad",
+    "compiler"
+  ],
+  "author": "Saikat Dutta Chowdhury",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
